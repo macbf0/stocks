@@ -22,8 +22,10 @@ class Stock:
         self.validate()
     
     def validate(self):
-        if not isinstance(self.symbol, str) or len(self.symbol) > 10:
-            raise ValueError("O símbolo deve ser uma string com no máximo 10 caracteres.")
+        if not isinstance(self.symbol, str) or len(self.symbol) > 4:
+            raise ValueError(
+                "The symbol must be a string with a maximum of 4 characters"
+            )
 
         float_fields = {
             "after_hours": self.after_hours,
@@ -35,21 +37,27 @@ class Stock:
         }
         for field_name, value in float_fields.items():
             if not isinstance(value, (float, int)) or value < 0:
-                raise ValueError(f"O campo {field_name} deve ser um número não negativo.")
+                raise ValueError(
+                    f"The field {field_name} must be a non-negative number"
+                )
 
         if not isinstance(self.status, str) or len(self.status) > 50:
-            raise ValueError("O status deve ser uma string com no máximo 50 caracteres.")
+            raise ValueError(
+                "The status must be a string with a maximum of 50 characters"
+            )
 
         if not isinstance(self.volume, int) or self.volume < 0:
-            raise ValueError("O volume deve ser um número inteiro não negativo.")
+            raise ValueError("The volume must be a non-negative integer")
 
         if not isinstance(self.performance, dict):
-            raise ValueError("O campo 'performance' deve ser um dicionário.")
+            raise ValueError("The 'performance' field must be a dictionary")
 
-        if not isinstance(self.amount, int):
+        if not isinstance(self.amount, int) or self.amount < 0:
             print(self.amount)
-            raise ValueError("O valor do campo 'amount' deve ser um inteiro não negativo.")
+            raise ValueError(
+                "The value of the 'amount' field must be a non-negative integer"
+            )
 
         date_regex = r"^\d{4}-\d{2}-\d{2}$"
         if not isinstance(self.date, str) or not re.match(date_regex, self.date):
-            raise ValueError("A data deve estar no formato 'YYYY-MM-DD'.")
+            raise ValueError("The date must be in the format 'YYYY-MM-DD'")
