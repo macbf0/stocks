@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from app.config import Config as config
 from app.core.stocks.domain.stocks_service import ExternalStockService
-from app.utils.scraper import scrape_performance
+from app.core.utils.scraper import scrape_performance
 
 
 class StockService(ExternalStockService):
