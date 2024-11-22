@@ -25,4 +25,4 @@ def update_stock(symbol):
     stock = use_case.execute(symbol, amount)
     return jsonify(
         {"message": f"{amount} units of stock {symbol} were added to your stock record"}
-    )
+    ), 201
