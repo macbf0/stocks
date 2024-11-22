@@ -24,7 +24,7 @@ def scrape_performance(symbol: str):
     req = Request(url, headers=headers)
     response = urlopen(req)
     if response.status != 200:
-        raise ValueError(f"Erro ao acessar a página para {symbol}")
+        raise ValueError(f"Error to access the page to {symbol}")
 
     html = response.read()
     decoded_data = gzip.decompress(html).decode('utf-8')
@@ -36,7 +36,7 @@ def scrape_performance(symbol: str):
         class_="table table--primary no-heading c2"
     )
     if not performance_section:
-        raise ValueError(f"Seção de desempenho não encontrada para {symbol}")
+        raise ValueError(f"Performance section not found for {symbol}")
 
     if performance_section:
         rows = performance_section.find_all('tr', class_='table__row')
